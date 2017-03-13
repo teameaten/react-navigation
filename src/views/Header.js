@@ -329,7 +329,7 @@ class Header extends React.PureComponent<void, HeaderProps, HeaderState> {
 const styles = StyleSheet.create({
   container: {
     paddingTop: STATUSBAR_HEIGHT,
-    backgroundColor: Platform.OS === 'ios' ? '#0f0' : '#F00',
+    backgroundColor: '#5FE6D7',
     height: STATUSBAR_HEIGHT + APPBAR_HEIGHT,
     shadowColor: 'black',
     shadowOpacity: 0.1,
