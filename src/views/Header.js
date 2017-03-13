@@ -107,7 +107,7 @@ class Header extends React.PureComponent<void, HeaderProps, HeaderState> {
     if (header && header.tintColor) {
       return header.tintColor;
     }
-    return undefined;
+    return "#fff";
   }
 
   _getHeaderTitleStyle(navigation: Navigation): Style {
