@@ -7,6 +7,7 @@ import {
   Platform,
   StyleSheet,
   View,
+  StatusBar,
 } from 'react-native';
 
 import ReactComponentWithPureRenderMixin from 'react/lib/ReactComponentWithPureRenderMixin';
@@ -57,8 +58,8 @@ type HeaderState = {
 };
 
 const APPBAR_HEIGHT = Platform.OS === 'ios' ? 44 : 56;
-const STATUSBAR_HEIGHT = 0;
 const TITLE_OFFSET = Platform.OS === 'ios' ? 70 : 40;
+const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : 0;
 
 class Header extends React.PureComponent<void, HeaderProps, HeaderState> {
 
@@ -317,9 +318,14 @@ class Header extends React.PureComponent<void, HeaderProps, HeaderState> {
     const { scenes, scene, style, position, progress, ...rest } = this.props;
 
     return (
-      <Animated.View {...rest} style={[styles.container, style]}>
+      <Animated.View {...rest} style={[style]}>
+        <View style={[styles.statusBar, { backgroundColor: "#55E2CF" }]}>
+          <StatusBar backgroundColor="#55E2CF" barStyle="light-content" />
+        </View>
+        <View style={styles.container}>
         <View style={styles.appBar}>
           {appBar}
+        </View>
         </View>
       </Animated.View>
     );
@@ -328,9 +334,8 @@ class Header extends React.PureComponent<void, HeaderProps, HeaderState> {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: STATUSBAR_HEIGHT,
     backgroundColor: '#5FE6D7',
-    height: STATUSBAR_HEIGHT + APPBAR_HEIGHT,
+    height: APPBAR_HEIGHT,
     shadowColor: 'black',
     shadowOpacity: 0.1,
     shadowRadius: StyleSheet.hairlineWidth,
@@ -338,6 +343,9 @@ const styles = StyleSheet.create({
       height: StyleSheet.hairlineWidth,
     },
     elevation: 4,
+  },
+  statusBar: {
+    height: STATUSBAR_HEIGHT,
   },
   appBar: {
     flex: 1,
