@@ -322,7 +322,7 @@ class Header extends React.PureComponent<void, HeaderProps, HeaderState> {
         <View style={[styles.statusBar, { backgroundColor: "#55E2CF" }]}>
           <StatusBar backgroundColor="#55E2CF" barStyle="light-content" />
         </View>
-        <View style={styles.container}>
+        <View style={this.props.dropShadowOff ? styles.containerDropShadowOff : styles.container}>
         <View style={styles.appBar}>
           {appBar}
         </View>
@@ -343,6 +343,10 @@ const styles = StyleSheet.create({
       height: StyleSheet.hairlineWidth,
     },
     elevation: 4,
+  },
+  containerDropShadowOff: {
+    backgroundColor: '#5FE6D7',
+    height: APPBAR_HEIGHT,
   },
   statusBar: {
     height: STATUSBAR_HEIGHT,
