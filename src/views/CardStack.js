@@ -44,6 +44,7 @@ type Props = {
   headerMode: HeaderMode,
   headerComponent?: ReactClass<*>,
   mode: 'card' | 'modal',
+  dropShadowOff: boolean,
   navigation: NavigationScreenProp<*, NavigationAction>,
   router: NavigationRouter,
   cardStyle?: Style,
@@ -102,6 +103,8 @@ class CardStack extends Component<DefaultProps, Props, void> {
      * Default value is `card`.
      */
     mode: PropTypes.oneOf(['card', 'modal']),
+
+    dropShadowOff: PropTypes.bool,
 
     /**
      * The distance from the edge of the card which gesture response can start
@@ -204,6 +207,7 @@ class CardStack extends Component<DefaultProps, Props, void> {
         router={this.props.router}
         style={headerConfig.style}
         mode={headerMode}
+        dropShadowOff={this.props.dropShadowOff}
         onNavigateBack={() => this.props.navigation.goBack(null)}
         renderLeftComponent={(props: NavigationTransitionProps) => {
           const header = this.props.router.getScreenConfig(props.navigation, 'header') || {};

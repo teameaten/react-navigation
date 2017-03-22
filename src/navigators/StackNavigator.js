@@ -27,6 +27,7 @@ export default (routeConfigMap: NavigationRouteConfigMap, stackConfig: StackNavi
     headerComponent,
     headerMode,
     mode,
+    dropShadowOff,
     cardStyle,
     onTransitionStart,
     onTransitionEnd,
@@ -45,6 +46,7 @@ export default (routeConfigMap: NavigationRouteConfigMap, stackConfig: StackNavi
       headerComponent={headerComponent}
       headerMode={headerMode}
       mode={mode}
+      dropShadowOff={dropShadowOff}
       cardStyle={cardStyle}
       onTransitionStart={onTransitionStart}
       onTransitionEnd={onTransitionEnd}
