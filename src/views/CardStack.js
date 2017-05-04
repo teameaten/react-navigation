@@ -176,11 +176,12 @@ class CardStack extends Component {
 
     // We need to explicitly exclude `mode` since Flow doesn't see
     // mode: headerMode override below and reports prop mismatch
-    const { mode, ...passProps } = this.props;
+    const { mode, dropShadowOff, ...passProps } = this.props;
 
     return renderHeader({
       ...passProps,
       scene,
+      dropShadowOff: dropShadowOff,
       mode: headerMode,
       getScreenDetails: this._getScreenDetails,
     });

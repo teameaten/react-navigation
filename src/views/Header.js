@@ -295,20 +295,20 @@ class Header extends React.PureComponent<void, HeaderProps, HeaderState> {
 
         <View style={[styles.container, !this.props.dropShadowOff ? styles.containerDropShadowOn : {}]}>
           <LinearGradient
-       colors = {
-         ['#F3564F', '#EB3A5A']
-       }
-       start = {{x: 0.0, y: 0}}
-       end = {{x: 1.0, y: 0.0}}
-       style={{flex: 1}}
-       >
-        <View style={[styles.statusBar, { backgroundColor: "rgba(0,0,0,0.1)" }]}>
-          <StatusBar translucent={true} backgroundColor="transparent" barStyle="light-content" />
-        </View>
-        <View style={styles.appBar}>
-          {appBar}
-        </View>
-        </LinearGradient>
+            colors = {
+              ['#F3564F', '#EB3A5A']
+            }
+            start = {{x: 0.0, y: 0}}
+            end = {{x: 1.0, y: 0.0}}
+            style={{flex: 1}}
+            >
+            <View style={[styles.statusBar, { backgroundColor: "rgba(0,0,0,0.1)" }]}>
+              <StatusBar translucent={true} backgroundColor="transparent" barStyle="light-content" />
+            </View>
+            <View style={styles.appBar}>
+              {appBar}
+            </View>
+          </LinearGradient>
         </View>
 
       </Animated.View>

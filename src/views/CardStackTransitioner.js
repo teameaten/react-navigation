@@ -27,6 +27,7 @@ const NativeAnimatedModule = NativeModules &&
 type Props = {
   screenProps?: {},
   headerMode: HeaderMode,
+  dropShadowOff: boolean,
   mode: 'card' | 'modal',
   navigation: NavigationScreenProp<NavigationState, NavigationAction>,
   router: NavigationRouter<NavigationState, NavigationAction, NavigationStackScreenOptions>,
@@ -96,6 +97,7 @@ class CardStackTransitioner extends Component<DefaultProps, Props, void> {
     const {
       screenProps,
       headerMode,
+      dropShadowOff,
       mode,
       router,
       cardStyle,
@@ -106,6 +108,7 @@ class CardStackTransitioner extends Component<DefaultProps, Props, void> {
       <CardStack
         screenProps={screenProps}
         headerMode={headerMode}
+        dropShadowOff={dropShadowOff}
         mode={mode}
         router={router}
         cardStyle={cardStyle}
