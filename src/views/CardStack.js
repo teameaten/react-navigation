@@ -233,6 +233,7 @@ class CardStack extends Component {
         );
       }
 
+    });
   }
 
   render(): React.Element<*> {
