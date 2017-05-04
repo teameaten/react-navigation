@@ -7,6 +7,8 @@ import {
 } from 'react-native';
 import { TabBar } from 'react-native-tab-view';
 import TabBarIcon from './TabBarIcon';
+import LinearGradient from 'react-native-linear-gradient';
+
 
 import type {
   NavigationState,
@@ -121,11 +123,19 @@ export default class TabBarTop extends PureComponent<DefaultProps, Props, void> 
     const props: any = this.props;
 
     return (
+      <LinearGradient
+       colors = {
+         ['#F3564F', '#EB3A5A']
+       }
+       start = {{x: 0.0, y: 0}}
+       end = {{x: 1.0, y: 0.0}}
+       >
       <TabBar
         {...props}
         renderIcon={this._renderIcon}
         renderLabel={this._renderLabel}
       />
+      </LinearGradient>
     );
   }
 }

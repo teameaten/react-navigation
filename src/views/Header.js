@@ -61,7 +61,7 @@ type HeaderState = {
 
 const APPBAR_HEIGHT = Platform.OS === 'ios' ? 44 : 56;
 const TITLE_OFFSET = Platform.OS === 'ios' ? 70 : 40;
-const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : 0;
+const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : 25;
 
 class Header extends React.PureComponent<void, HeaderProps, HeaderState> {
 
@@ -128,8 +128,7 @@ class Header extends React.PureComponent<void, HeaderProps, HeaderState> {
 
     // On iOS, width of left/right components depends on the calculated
     // size of the title.
-    const onLayoutIOS = Platform.OS === 'ios'
-      ? (e: LayoutEvent) => {
+    const onLayoutIOS = (e: LayoutEvent) => {
         this.setState({
           widths: {
             ...this.state.widths,
@@ -137,7 +136,6 @@ class Header extends React.PureComponent<void, HeaderProps, HeaderState> {
           },
         });
       }
-      : undefined;
 
     return (
       <HeaderTitle
@@ -187,14 +185,6 @@ class Header extends React.PureComponent<void, HeaderProps, HeaderState> {
   _renderTitle(props: NavigationSceneRendererProps, options: *): ?React.Element<*> {
     const style = {};
 
-    if (Platform.OS === 'android') {
-      if (!options.hasLeftComponent) {
-        style.left = 0;
-      }
-      if (!options.hasRightComponent) {
-        style.right = 0;
-      }
-    }
 
     return this._renderSubView(
       { ...props, style },
@@ -333,7 +323,7 @@ class Header extends React.PureComponent<void, HeaderProps, HeaderState> {
        style={{flex: 1}}
        >
         <View style={[styles.statusBar, { backgroundColor: "rgba(0,0,0,0.1)" }]}>
-          <StatusBar backgroundColor="#C04153" barStyle="light-content" />
+          <StatusBar translucent={true} backgroundColor="transparent" barStyle="light-content" />
         </View>
         <View style={styles.appBar}>
           {appBar}
@@ -379,9 +369,7 @@ const styles = StyleSheet.create({
     right: TITLE_OFFSET,
     top: 0,
     position: 'absolute',
-    alignItems: Platform.OS === 'android'
-      ? 'flex-start'
-      : 'center',
+    alignItems: 'center',
   },
   left: {
     left: 0,
