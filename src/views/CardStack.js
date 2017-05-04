@@ -41,6 +41,7 @@ type Props = {
   headerMode: HeaderMode,
   headerComponent?: ReactClass<*>,
   mode: 'card' | 'modal',
+  dropShadowOff: boolean,
   navigation: NavigationScreenProp<NavigationState, NavigationAction>,
   router: NavigationRouter<NavigationState, NavigationAction, NavigationStackScreenOptions>,
   cardStyle?: Style,
@@ -231,7 +232,7 @@ class CardStack extends Component {
           NavigationActions.back({ key: backFromScene.route.key }),
         );
       }
-    });
+
   }
 
   render(): React.Element<*> {

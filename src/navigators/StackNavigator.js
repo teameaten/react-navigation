@@ -28,6 +28,7 @@ export default (
     paths,
     headerMode,
     mode,
+    dropShadowOff,
     cardStyle,
     transitionConfig,
     onTransitionStart,
@@ -53,6 +54,7 @@ export default (
       {...props}
       headerMode={headerMode}
       mode={mode}
+      dropShadowOff={dropShadowOff}
       cardStyle={cardStyle}
       transitionConfig={transitionConfig}
       onTransitionStart={onTransitionStart}

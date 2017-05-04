@@ -4,6 +4,8 @@ import React, { PureComponent } from 'react';
 import { Animated, StyleSheet } from 'react-native';
 import { TabBar } from 'react-native-tab-view';
 import TabBarIcon from './TabBarIcon';
+import LinearGradient from 'react-native-linear-gradient';
+
 
 import type {
   NavigationAction,
@@ -120,11 +122,19 @@ export default class TabBarTop
     const props: any = this.props;
 
     return (
+      <LinearGradient
+       colors = {
+         ['#F3564F', '#EB3A5A']
+       }
+       start = {{x: 0.0, y: 0}}
+       end = {{x: 1.0, y: 0.0}}
+       >
       <TabBar
         {...props}
         renderIcon={this._renderIcon}
         renderLabel={this._renderLabel}
       />
+      </LinearGradient>
     );
   }
 }

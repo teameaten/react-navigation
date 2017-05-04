@@ -4,7 +4,15 @@
 
 import React from 'react';
 
-import { Animated, Platform, StyleSheet, View } from 'react-native';
+import {
+  Animated,
+  Platform,
+  StyleSheet,
+  View,
+  StatusBar,
+} from 'react-native';
+
+import LinearGradient from 'react-native-linear-gradient';
 
 import HeaderTitle from './HeaderTitle';
 import HeaderBackButton from './HeaderBackButton';
@@ -34,8 +42,8 @@ type HeaderState = {
 };
 
 const APPBAR_HEIGHT = Platform.OS === 'ios' ? 44 : 56;
-const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : 0;
 const TITLE_OFFSET = Platform.OS === 'ios' ? 70 : 40;
+const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : 25;
 
 class Header extends React.PureComponent<void, HeaderProps, HeaderState> {
   static HEIGHT = APPBAR_HEIGHT + STATUSBAR_HEIGHT;
@@ -91,16 +99,15 @@ class Header extends React.PureComponent<void, HeaderProps, HeaderState> {
 
     // On iOS, width of left/right components depends on the calculated
     // size of the title.
-    const onLayoutIOS = Platform.OS === 'ios'
-      ? (e: LayoutEvent) => {
+    const onLayoutIOS = (e: LayoutEvent) => {
           this.setState({
             widths: {
               ...this.state.widths,
               [props.scene.key]: e.nativeEvent.layout.width,
             },
           });
-        }
-      : undefined;
+        };
+
 
     return (
       <HeaderTitle
@@ -160,14 +167,6 @@ class Header extends React.PureComponent<void, HeaderProps, HeaderState> {
   _renderTitle(props: SceneProps, options: *): ?React.Element<*> {
     const style = {};
 
-    if (Platform.OS === 'android') {
-      if (!options.hasLeftComponent) {
-        style.left = 0;
-      }
-      if (!options.hasRightComponent) {
-        style.right = 0;
-      }
-    }
 
     return this._renderSubView(
       { ...props, style },
@@ -291,10 +290,27 @@ class Header extends React.PureComponent<void, HeaderProps, HeaderState> {
     const style = options.headerStyle;
 
     return (
-      <Animated.View {...rest} style={[styles.container, style]}>
+      <Animated.View {...rest} style={[style]}>
+
+
+        <View style={[styles.container, !this.props.dropShadowOff ? styles.containerDropShadowOn : {}]}>
+          <LinearGradient
+       colors = {
+         ['#F3564F', '#EB3A5A']
+       }
+       start = {{x: 0.0, y: 0}}
+       end = {{x: 1.0, y: 0.0}}
+       style={{flex: 1}}
+       >
+        <View style={[styles.statusBar, { backgroundColor: "rgba(0,0,0,0.1)" }]}>
+          <StatusBar translucent={true} backgroundColor="transparent" barStyle="light-content" />
+        </View>
         <View style={styles.appBar}>
           {appBar}
         </View>
+        </LinearGradient>
+        </View>
+
       </Animated.View>
     );
   }
@@ -302,9 +318,9 @@ class Header extends React.PureComponent<void, HeaderProps, HeaderState> {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: STATUSBAR_HEIGHT,
-    backgroundColor: Platform.OS === 'ios' ? '#EFEFF2' : '#FFF',
-    height: STATUSBAR_HEIGHT + APPBAR_HEIGHT,
+    height: APPBAR_HEIGHT + STATUSBAR_HEIGHT,
+  },
+  containerDropShadowOn: {
     shadowColor: 'black',
     shadowOpacity: 0.1,
     shadowRadius: StyleSheet.hairlineWidth,
@@ -312,6 +328,9 @@ const styles = StyleSheet.create({
       height: StyleSheet.hairlineWidth,
     },
     elevation: 4,
+  },
+  statusBar: {
+    height: STATUSBAR_HEIGHT,
   },
   appBar: {
     flex: 1,
@@ -330,7 +349,7 @@ const styles = StyleSheet.create({
     right: TITLE_OFFSET,
     top: 0,
     position: 'absolute',
-    alignItems: Platform.OS === 'ios' ? 'center' : 'flex-start',
+    alignItems: 'center',
   },
   left: {
     left: 0,
