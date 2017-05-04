@@ -10,6 +10,8 @@ import {
   StatusBar,
 } from 'react-native';
 
+import LinearGradient from 'react-native-linear-gradient';
+
 import ReactComponentWithPureRenderMixin from 'react/lib/ReactComponentWithPureRenderMixin';
 
 import HeaderTitle from './HeaderTitle';
@@ -319,14 +321,26 @@ class Header extends React.PureComponent<void, HeaderProps, HeaderState> {
 
     return (
       <Animated.View {...rest} style={[style]}>
-        <View style={[styles.statusBar, { backgroundColor: "#55E2CF" }]}>
-          <StatusBar backgroundColor="#55E2CF" barStyle="light-content" />
+
+
+        <View style={[styles.container, !this.props.dropShadowOff ? styles.containerDropShadowOn : {}]}>
+          <LinearGradient
+       colors = {
+         ['#F3564F', '#EB3A5A']
+       }
+       start = {{x: 0.0, y: 0}}
+       end = {{x: 1.0, y: 0.0}}
+       style={{flex: 1}}
+       >
+        <View style={[styles.statusBar, { backgroundColor: "rgba(0,0,0,0.1)" }]}>
+          <StatusBar backgroundColor="#C04153" barStyle="light-content" />
         </View>
-        <View style={this.props.dropShadowOff ? styles.containerDropShadowOff : styles.container}>
         <View style={styles.appBar}>
           {appBar}
         </View>
+        </LinearGradient>
         </View>
+
       </Animated.View>
     );
   }
@@ -334,8 +348,9 @@ class Header extends React.PureComponent<void, HeaderProps, HeaderState> {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#5FE6D7',
-    height: APPBAR_HEIGHT,
+    height: APPBAR_HEIGHT + STATUSBAR_HEIGHT,
+  },
+  containerDropShadowOn: {
     shadowColor: 'black',
     shadowOpacity: 0.1,
     shadowRadius: StyleSheet.hairlineWidth,
@@ -343,10 +358,6 @@ const styles = StyleSheet.create({
       height: StyleSheet.hairlineWidth,
     },
     elevation: 4,
-  },
-  containerDropShadowOff: {
-    backgroundColor: '#5FE6D7',
-    height: APPBAR_HEIGHT,
   },
   statusBar: {
     height: STATUSBAR_HEIGHT,
