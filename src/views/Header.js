@@ -302,7 +302,7 @@ class Header extends React.PureComponent<void, HeaderProps, HeaderState> {
             end = {{x: 1.0, y: 0.0}}
             style={{flex: 1}}
             >
-            <View style={[styles.statusBar, { backgroundColor: "rgba(0,0,0,0.1)" }]}>
+            <View style={[styles.statusBar, { backgroundColor: "transparent" }]}>
               <StatusBar translucent={true} backgroundColor="transparent" barStyle="light-content" />
             </View>
             <View style={styles.appBar}>
