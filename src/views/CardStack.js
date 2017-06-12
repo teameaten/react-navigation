@@ -385,7 +385,7 @@ class CardStack extends Component {
   _renderInnerScene(
     SceneComponent: ReactClass<*>,
     scene: NavigationScene
-  ): View | SceneView {
+  ): React.Element<any> {
     const { navigation } = this._getScreenDetails(scene);
     const { screenProps } = this.props;
     const headerMode = this._getHeaderMode();
