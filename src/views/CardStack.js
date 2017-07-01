@@ -11,6 +11,7 @@ import {
   View,
   I18nManager,
   Easing,
+  Dimensions,
 } from 'react-native';
 
 import Card from './Card';
@@ -34,6 +35,8 @@ import type {
 } from '../TypeDefinition';
 
 import TransitionConfigs from './TransitionConfigs';
+
+const window = Dimensions.get('window');
 
 const emptyFunction = () => {};
 
@@ -90,7 +93,7 @@ const RESPOND_THRESHOLD = 20;
 /**
  * The distance of touch start from the edge of the screen where the gesture will be recognized
  */
-const GESTURE_RESPONSE_DISTANCE_HORIZONTAL = 25;
+const GESTURE_RESPONSE_DISTANCE_HORIZONTAL = window.width;
 const GESTURE_RESPONSE_DISTANCE_VERTICAL = 135;
 
 const animatedSubscribeValue = (animatedValue: Animated.Value) => {
