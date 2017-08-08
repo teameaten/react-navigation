@@ -125,7 +125,7 @@ export default class TabBarTop
     return (
       <LinearGradient
        colors = {
-         ['#FE816A', '#FC5563']
+         ['#FC7863', '#F84E61']
        }
        start = {{x: 0.0, y: 0}}
        end = {{x: 1.0, y: 0.0}}
